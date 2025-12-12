@@ -224,48 +224,52 @@ function Products() {
         </div>
       )}
       {/* Popup tìm kiếm bằng hình ảnh */}
-       {showImageSearch && (
-          <div className="fixed inset-0  bg-opacity-40 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-lg relative">
-              <button
-                onClick={() => setShowImageSearch(false)}
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-              >
-                <X size={20} />
-              </button>
-              <ImageSearch
-                onSearch={(list) => {
-                  setImageMode(true); 
-                  setProducts(list);          
-                  setShowImageSearch(false);
-                  setCurrentPage(1);
-                  setSearchTerm("");
-                }}
-              />
-            </div>
+      {showImageSearch && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 w-[95%] sm:w-full sm:max-w-lg relative">
+            <button
+              onClick={() => setShowImageSearch(false)}
+              className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-gray-700"
+            >
+              <X size={20} />
+            </button>
+            <ImageSearch
+              onSearch={(list) => {
+                setImageMode(true);
+                setProducts(list);
+                setShowImageSearch(false);
+                setCurrentPage(1);
+                setSearchTerm("");
+              }}
+            />
           </div>
-        )}
+        </div>
+      )}
+
       {/* Popup bộ lọc */}
       {showFilterPanel && (
-        <FilterPanel
-          categories={categories}
-          provinceList={provinceList}
-          tempCategoryId={tempCategoryId}
-          setTempCategoryId={setTempCategoryId}
-          tempPriceFilter={tempPriceFilter}
-          setTempPriceFilter={setTempPriceFilter}
-          tempProvinceFilter={tempProvinceFilter}
-          setTempProvinceFilter={setTempProvinceFilter}
-          onApply={() => {
-            setSelectedCategoryId(tempCategoryId);
-            setPriceFilter(tempPriceFilter);
-            setProvinceFilter(tempProvinceFilter);
-            setShowFilterPanel(false);
-            setCurrentPage(1);
-          }}
-          onClose={() => setShowFilterPanel(false)}
-        />
+        <div className="fixed inset-0 bg-black/40 z-50 flex sm:justify-end justify-center">
+          <FilterPanel
+            categories={categories}
+            provinceList={provinceList}
+            tempCategoryId={tempCategoryId}
+            setTempCategoryId={setTempCategoryId}
+            tempPriceFilter={tempPriceFilter}
+            setTempPriceFilter={setTempPriceFilter}
+            tempProvinceFilter={tempProvinceFilter}
+            setTempProvinceFilter={setTempProvinceFilter}
+            onApply={() => {
+              setSelectedCategoryId(tempCategoryId);
+              setPriceFilter(tempPriceFilter);
+              setProvinceFilter(tempProvinceFilter);
+              setShowFilterPanel(false);
+              setCurrentPage(1);
+            }}
+            onClose={() => setShowFilterPanel(false)}
+          />
+        </div>
       )}
+
 
       {/*Danh sách sản phẩm */}
       <section

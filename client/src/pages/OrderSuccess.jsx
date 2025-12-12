@@ -42,83 +42,83 @@ function OrderSuccess() {
     );
   }
 
-  return (
-    <div className="max-w-xl mx-auto px-4 py-12">
-      <CheckoutSteps currentStep={3} />
+return (
+  <div className="max-w-xl mx-auto px-3 sm:px-4 py-8 sm:py-12">
+    <CheckoutSteps currentStep={3} />
 
-      <div className="bg-green-50 border border-green-300 rounded-xl p-6 shadow-md text-center mt-6">
-        <h1 className="text-2xl font-bold text-green-700 mb-4">
-          🎉 Đặt hàng thành công!
-        </h1>
+    <div className="bg-green-50 border border-green-300 rounded-xl p-4 sm:p-6 shadow-md text-center mt-6">
+      <h1 className="text-xl sm:text-2xl font-bold text-green-700 mb-4">
+        🎉 Đặt hàng thành công!
+      </h1>
 
-        <p className="text-gray-700 mb-2">
-          Mã đơn hàng của bạn là:{" "}
-          <span className="font-semibold text-orange-600">{order.order_code}</span>
-        </p>
+      <p className="text-gray-700 mb-2">
+        Mã đơn hàng của bạn là:{" "}
+        <span className="font-semibold text-orange-600">{order.order_code}</span>
+      </p>
 
+      <p className="text-gray-600">
+        Tổng tiền:{" "}
+        <span className="font-semibold text-red-600">
+          {Number(order.total_price).toLocaleString()}₫
+        </span>
+      </p>
+
+      {order.shipping_fee > 0 && (
         <p className="text-gray-600">
-          Tổng tiền:{" "}
-          <span className="font-semibold text-red-600">
-            {Number(order.total_price).toLocaleString()}₫
+          Phí vận chuyển:{" "}
+          <span className="font-semibold text-gray-800">
+            {Number(order.shipping_fee).toLocaleString()}₫
           </span>
         </p>
+      )}
 
-        {order.shipping_fee > 0 && (
-          <p className="text-gray-600">
-            Phí vận chuyển:{" "}
-            <span className="font-semibold text-gray-800">
-              {Number(order.shipping_fee).toLocaleString()}₫
-            </span>
-          </p>
-        )}
-
-        {order.discount_amount > 0 && (
-          <p className="text-gray-600">
-            Giảm giá:{" "}
-            <span className="font-semibold text-green-600">
-              {Number(order.discount_amount).toLocaleString()}₫
-            </span>
-          </p>
-        )}
-
-        {order.coupon_code && (
-          <p className="text-gray-600">
-            Mã giảm giá:{" "}
-            <span className="font-semibold text-blue-600">{order.coupon_code}</span>
-          </p>
-        )}
-
+      {order.discount_amount > 0 && (
         <p className="text-gray-600">
-          Phương thức thanh toán:{" "}
-          <span className="font-medium">
-            {order.payment_method === "COD"
-              ? "Trả tiền mặt khi nhận hàng"
-              : order.payment_method === "BANK"
-              ? "Chuyển khoản"
-              : order.payment_method === "VNPAY"
-              ? "Thanh toán qua VNPAY"
-              : order.payment_method}
+          Giảm giá:{" "}
+          <span className="font-semibold text-green-600">
+            {Number(order.discount_amount).toLocaleString()}₫
           </span>
         </p>
+      )}
 
+      {order.coupon_code && (
+        <p className="text-gray-600">
+          Mã giảm giá:{" "}
+          <span className="font-semibold text-blue-600">{order.coupon_code}</span>
+        </p>
+      )}
 
-        <div className="mt-6 space-x-4">
-          <Link
-            to="/my-orders"
-            className="inline-block bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 text-sm"
-          >
-            Xem đơn hàng của tôi
-          </Link>
-          <Link
-            to="/"
-            className="inline-block bg-gray-200 text-gray-700 px-5 py-2 rounded hover:bg-gray-300 text-sm"
-          >
-            Về trang chủ
-          </Link>
-        </div>
+      <p className="text-gray-600">
+        Phương thức thanh toán:{" "}
+        <span className="font-medium">
+          {order.payment_method === "COD"
+            ? "Trả tiền mặt khi nhận hàng"
+            : order.payment_method === "BANK"
+            ? "Chuyển khoản"
+            : order.payment_method === "VNPAY"
+            ? "Thanh toán qua VNPAY"
+            : order.payment_method}
+        </span>
+      </p>
+
+      <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <Link
+          to="/my-orders"
+          className="w-full sm:w-auto inline-block bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 text-sm text-center"
+        >
+          Xem đơn hàng của tôi
+        </Link>
+        <Link
+          to="/"
+          className="w-full sm:w-auto inline-block bg-gray-200 text-gray-700 px-5 py-2 rounded hover:bg-gray-300 text-sm text-center"
+        >
+          Về trang chủ
+        </Link>
       </div>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default OrderSuccess;

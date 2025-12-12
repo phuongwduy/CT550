@@ -14,7 +14,7 @@ function FilterPanel({
 }) {
   return (
     <div className="fixed inset-0 bg-black/30 z-50 flex justify-end">
-      <div className="w-full sm:w-[400px] bg-white h-full shadow-lg p-6 overflow-y-auto">
+      <div className="w-full sm:w-[400px] bg-white h-full shadow-lg p-4 sm:p-6 overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-green-700">Bộ lọc sản phẩm</h2>
           <button

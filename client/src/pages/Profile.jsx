@@ -100,17 +100,16 @@ function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center p-6">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 border border-green-100">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-          {/* Avatar */}
-          <div className="flex flex-col items-center gap-4">
-          {/* Avatar */}
+  <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center p-6 sm:p-8">
+    <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-green-100">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8">
+        {/* Avatar */}
+        <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <img
               src={form.avatar}
               alt="Avatar"
-              className="w-40 h-40 rounded-full object-cover border-4 border-green-200"
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-green-200"
             />
             <button
               type="button"
@@ -129,7 +128,6 @@ function Profile() {
             />
           </div>
 
-          {/* Nút đổi mật khẩu */}
           <button
             type="button"
             onClick={() => setChangingPassword(true)}
@@ -139,91 +137,88 @@ function Profile() {
           </button>
         </div>
 
-          
-          {/* Form thông tin */}
-          <div className="flex-1">
-            <h2 className="text-2xl font-extrabold text-green-700 mb-2">Hồ sơ cá nhân</h2>
-            <p className="text-sm text-gray-500 mb-6">
-              Cập nhật thông tin liên hệ và địa chỉ của bạn.
-            </p>
+        {/* Form thông tin */}
+        <div className="flex-1 w-full">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-green-700 mb-2">Hồ sơ cá nhân</h2>
+          <p className="text-sm text-gray-500 mb-6">
+            Cập nhật thông tin liên hệ và địa chỉ của bạn.
+          </p>
 
-            <form onSubmit={handleUpdate} className="space-y-4">
-              <div>
-                <label className="text-sm font-medium text-gray-700">Họ tên</label>
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
-                  placeholder="Nguyễn Văn A"
-                  required
-                />
-              </div>
+          <form onSubmit={handleUpdate} className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">Họ tên</label>
+              <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
+                placeholder="Nguyễn Văn A"
+                required
+              />
+            </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700">Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  disabled
-                  className="mt-1 block w-full px-3 py-2 border rounded-lg bg-gray-100 text-gray-500"
-                />
-              </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Email</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                disabled
+                className="mt-1 block w-full px-3 py-2 border rounded-lg bg-gray-100 text-gray-500"
+              />
+            </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700">Số điện thoại</label>
-                <input
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
-                  placeholder="0987xxxxxx"
-                />
-              </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Số điện thoại</label>
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
+                placeholder="0987xxxxxx"
+              />
+            </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700">Địa chỉ</label>
-                <input
-                  name="address"
-                  value={form.address}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
-                  placeholder="Phong Thanh Tây B, Cà Mau"
-                />
-              </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Địa chỉ</label>
+              <input
+                name="address"
+                value={form.address}
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-200"
+                placeholder="Phong Thanh Tây B, Cà Mau"
+              />
+            </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full py-2 rounded-lg text-white font-medium ${
-                  loading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-700 hover:bg-green-800"
-                } flex items-center justify-center`}
-              >
-                {loading && <Loader2 className="animate-spin h-5 w-5 mr-2" />}
-                Cập nhật thông tin
-              </button>
-              
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-2 rounded-lg text-white font-medium ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-700 hover:bg-green-800"
+              } flex items-center justify-center`}
+            >
+              {loading && <Loader2 className="animate-spin h-5 w-5 mr-2" />}
+              Cập nhật thông tin
+            </button>
+          </form>
 
-            </form>
-            {changingPassword && (
+          {changingPassword && (
             <div className="fixed inset-0 z-50 flex items-center justify-center">
               <div
-                className="absolute inset-0  bg-opacity-40 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                 onClick={() => setChangingPassword(false)}
               />
 
-              {/* Form*/}
-              <div className="relative bg-white rounded-xl shadow-xl p-6 w-full max-w-md border border-green-200 z-10">
+              <div className="relative bg-white rounded-xl shadow-xl p-4 sm:p-6 w-[95%] sm:w-full sm:max-w-md border border-green-200 z-10">
                 <button
                   onClick={() => setChangingPassword(false)}
                   className="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-xl font-bold"
                 >
                   ×
                 </button>
-                <h3 className="text-lg font-semibold text-green-700 mb-4">Đổi mật khẩu</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-green-700 mb-4">Đổi mật khẩu</h3>
                 <form onSubmit={handlePasswordChange} className="space-y-4">
                   <div>
                     <label className="text-sm font-medium text-gray-700">Mật khẩu hiện tại</label>
@@ -270,26 +265,24 @@ function Profile() {
                 </form>
               </div>
             </div>
-)}
-
-
-
-          </div>
+          )}
         </div>
       </div>
-
-      {/* Toast hiển thị thông báo */}
-      {toast && (
-        <div className="fixed top-20 right-5 z-50">
-          <Toast
-            type={toast.type}
-            message={toast.message}
-            onClose={() => setToast(null)}
-          />
-        </div>
-      )}
     </div>
-  );
+
+    {/* Toast hiển thị thông báo */}
+    {toast && (
+      <div className="fixed top-4 right-4 sm:top-20 sm:right-5 z-50">
+        <Toast
+          type={toast.type}
+          message={toast.message}
+          onClose={() => setToast(null)}
+        />
+      </div>
+    )}
+  </div>
+);
+
 }
 
 export default Profile;

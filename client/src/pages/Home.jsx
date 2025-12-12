@@ -50,7 +50,7 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen  from-green-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
 
       {/* Banner */}
       <section className="mb-6">
@@ -100,7 +100,7 @@ useEffect(() => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-4 border rounded-lg shadow-sm hover:shadow-md transition"
+                className="p-4 sm:p-5 border rounded-lg shadow-sm hover:shadow-md transition"
               >
                 <img
                   src={`/icons/${item.icon}`}

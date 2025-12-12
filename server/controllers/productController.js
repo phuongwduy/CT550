@@ -165,7 +165,9 @@ exports.updateProduct = async (req, res) => {
     if (price <= 0 || price > 100000000) { // giới hạn 100 triệu
       return res.status(400).json({ error: "Giá sản phẩm phải lớn hơn 0 và nhỏ hơn 100,000,000" });
     }
-
+    if (!name || !price || !category_id || !province || !unit_id) {
+    return res.status(400).json({ error: "Vui lòng nhập đầy đủ thông tin sản phẩm" });
+  }
     res.json({ message: "Cập nhật sản phẩm thành công" });
   } catch (err) {
     res.status(500).json({ error: "Lỗi cập nhật sản phẩm" });

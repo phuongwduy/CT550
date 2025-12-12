@@ -100,8 +100,8 @@ const ProductModel = {
       image,
       image_public_id,
       supplier_id,
-      id,
       embedding,
+      id  
     ]);
     return result.affectedRows > 0;
   },
