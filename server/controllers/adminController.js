@@ -25,7 +25,38 @@ exports.createUser = async (req, res) => {
     const hashed = await bcrypt.hash(password, 10);
     const defaultAvatar = "https://res.cloudinary.com/dolchpri6/image/upload/v1761997696/avatars/ix4jjgoaqi5rx5nqywh0.png";
     const userId = await adminModel.createUser(name, email, hashed, role, defaultAvatar);
-    res.json({ success: true, message: "✅ Đã tạo người dùng mới.", userId });
+    res.json({ success: true, message: "Đã tạo người dùng mới.", userId });
+  } catch (err) {
+    res.status(500).json({ error: "Lỗi tạo người dùng." });
+  }
+};
+exports.createUserByAdmin = async (req, res) => {
+  const { name, email, password, role, phone, address } = req.body;
+
+  if (!name || !email || !password || !role) {
+    return res.status(400).json({ error: "Thiếu thông tin bắt buộc." });
+  }
+
+  try {
+    const existing = await adminModel.getUserByEmail(email);
+    if (existing) {
+      return res.status(400).json({ error: "Email đã tồn tại." });
+    }
+
+    const hashed = await bcrypt.hash(password, 10);
+    const defaultAvatar = "https://res.cloudinary.com/.../default.png";
+
+    const userId = await adminModel.createUserWithDetails(
+      name,
+      email,
+      hashed,
+      role,
+      defaultAvatar,
+      phone,
+      address
+    );
+
+    res.json({ success: true, message: "Đã tạo người dùng mới với đầy đủ thông tin.", userId });
   } catch (err) {
     res.status(500).json({ error: "Lỗi tạo người dùng." });
   }

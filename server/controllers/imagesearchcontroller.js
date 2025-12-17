@@ -105,7 +105,7 @@ exports.searchByImage = async (req, res) => {
     scored.sort((a, b) => b.similarity - a.similarity);
     return res.json({
       success: true,
-      results: scored.slice(0, 2),
+      results: scored.slice(0, 1),
     });
   } catch (err) {
     console.error("Image search error:", err);

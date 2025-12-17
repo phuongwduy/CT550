@@ -64,9 +64,9 @@ function Products() {
   if (priceFilter === "low") params.push("price_max=100000");
   if (priceFilter === "mid") {
     params.push("price_min=100000");
-    params.push("price_max=300000");
+    params.push("price_max=200000");
   }
-  if (priceFilter === "high") params.push("price_min=300000");
+  if (priceFilter === "high") params.push("price_min=200000");
 
   if (params.length > 0) url += "?" + params.join("&");
 
@@ -188,12 +188,12 @@ function Products() {
             )}
             {priceFilter === "mid" && (
               <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">
-                Giá 100.000₫ – 300.000₫
+                Giá 100.000₫ – 200.000₫
               </span>
             )}
             {priceFilter === "high" && (
               <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">
-                Giá trên 300.000₫
+                Giá trên 200.000₫
               </span>
             )}
             {provinceFilter && (

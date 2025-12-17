@@ -38,7 +38,16 @@ const AdminModel = {
     );
     return result.insertId;
   },
-
+  //Tạo người dùng cho admin
+  async createUserWithDetails(name, email, hashedPassword, role, avatar, phone, address, verified = true, provider = "local") {
+  const [result] = await db.query(
+    `INSERT INTO users 
+    (name, email, password, role, avatar, phone, address, verified, is_deleted, auth_provider)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)`,
+    [name, email, hashedPassword, role, avatar, phone, address, verified ? 1 : 0, provider]
+  );
+  return result.insertId;
+},
   // Cập nhật vai trò người dùng
   async updateUserRole(id, role) {
     const [result] = await db.query(

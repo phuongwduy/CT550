@@ -66,8 +66,8 @@ function FilterPanel({
             {[
               { label: "Tất cả", value: "" },
               { label: "Dưới 100.000₫", value: "low" },
-              { label: "100.000₫ – 300.000₫", value: "mid" },
-              { label: "Trên 300.000₫", value: "high" },
+              { label: "100.000₫ – 200.000₫", value: "mid" },
+              { label: "Trên 200.000₫", value: "high" },
             ].map((option) => (
               <button
                 key={option.value}

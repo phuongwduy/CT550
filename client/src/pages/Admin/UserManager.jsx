@@ -14,8 +14,9 @@ function UserManager() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [roleFilter, setRoleFilter] = useState("all");
   
-  const itemsPerPage = 10;
+  const itemsPerPage = 6;
 
   const token = localStorage.getItem("token");
 
@@ -65,12 +66,18 @@ function UserManager() {
     }
   };
 
-  const filteredUsers = users.filter((u) =>
-    `${u.name} ${u.email}`.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+ const filteredUsers = users.filter((u) => {
+  const matchSearch = `${u.name} ${u.email}`.toLowerCase().includes(searchTerm.toLowerCase());
+  const matchRole = roleFilter === "all" || u.role === roleFilter;
+  return matchSearch && matchRole;
+});
 
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-  const paginatedUsers = filteredUsers.slice(
+  const roleOrder = { admin: 1, staff: 2, user: 3 };
+  const sortedUsers = [...filteredUsers].sort((a, b) => {
+    return roleOrder[a.role] - roleOrder[b.role];
+  });
+    const totalPages = Math.ceil(sortedUsers.length / itemsPerPage);
+  const paginatedUsers = sortedUsers.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -87,6 +94,19 @@ function UserManager() {
           }}
           placeholder="Tìm theo tên hoặc email..."
         />
+        <select
+          value={roleFilter}
+          onChange={(e) => {
+            setRoleFilter(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="border px-3 py-2 rounded"
+        >
+          <option value="all">Tất cả vai trò</option>
+          <option value="user">Người dùng</option>
+          <option value="staff">Nhân viên</option>
+          <option value="admin">Quản trị</option>
+        </select>
         <button
           onClick={() => {
             setEditingUser(null);

@@ -229,7 +229,7 @@ const handleSubmit = async () => {
 
     const payRes = await fetch(`/api/payment/paypal/checkout`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",  Authorization: `Bearer ${token}`},
       body: JSON.stringify({ order_id: data.orderId }),
     });
 

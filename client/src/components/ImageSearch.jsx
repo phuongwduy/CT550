@@ -26,14 +26,14 @@ export default function FruitRecognizer({ onSearch }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await axios.post("http://localhost:5000/api/search-by-image", formData, {
+      const res = await axios.post("/api/search-by-image", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
       const data = res.data;
-      console.log("📦 Response từ backend:", res.data);
+      
       if (data.results && data.results.length > 0) {
-        // 👇 lọc sản phẩm similarity >= 0.7
+        // lọc sản phẩm similarity >= 0.7
         const filtered = data.results.filter(r => r.similarity >= 0.7);
 
         if (filtered.length > 0) {

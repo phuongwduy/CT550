@@ -20,27 +20,35 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(userWithToken));
     } catch (err) {
       console.error("❌ Lỗi khi refresh user:", err);
-      setUser(null);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+
+      
     }
   };
 
-  useEffect(() => {
+ useEffect(() => {
+    // ✅ Dựa vào token thật trong localStorage, KHÔNG dựa vào parsedUser.token
+    const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
-    try {
-      const parsedUser = JSON.parse(storedUser);
-      if (parsedUser?.token) {
-        setUser(parsedUser);
-        refreshUser().finally(() => setLoading(false));
-      } else {
-        setUser(null);
-        setLoading(false);
-      }
-    } catch {
+
+    if (!token) {
       setUser(null);
       setLoading(false);
+      return;
     }
+
+    // Set user tạm từ localStorage để Navbar không bị “thoát” khi vừa reload
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser({ ...parsedUser, token });
+      } catch {
+        setUser({ token });
+      }
+    } else {
+      setUser({ token });
+    }
+
+    refreshUser().finally(() => setLoading(false));
   }, []);
 
   return (

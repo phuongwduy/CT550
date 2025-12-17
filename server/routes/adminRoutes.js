@@ -6,7 +6,7 @@ const adminOrderController = require("../controllers/admin/adminOrderController"
 const { verifyToken, checkRole } = require("../middleware/authMiddleware");
 
 router.get("/users", verifyToken, checkRole(["admin"]), adminController.getAllUsers);
-router.post("/users", verifyToken, checkRole(["admin"]), adminController.createUser);
+router.post("/users", verifyToken, checkRole(["admin"]), adminController.createUserByAdmin);
 router.put("/users/:id/role", verifyToken, checkRole(["admin"]), adminController.updateUserRole);
 router.delete("/users/:id", verifyToken, checkRole(["admin"]), adminController.deleteUser);
 

@@ -195,7 +195,7 @@ const AdminOrderController = {
       return res.json({ message: "Đơn hàng đã được xác nhận và trừ kho theo FIFO." });
     }
 
-    // ⚙️ Các trạng thái khác (packing, shipping, delivered)
+    // Các trạng thái khác (packing, shipping, delivered)
     const transitions = {
       pending: ["confirmed", "cancelled"],
       confirmed: ["packing", "cancelled"],
